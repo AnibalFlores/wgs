@@ -1,0 +1,21 @@
+<SCRIPT LANGUAGE="VBScript" RUNAT="Server">
+<!-- METADATA TYPE="typelib" FILE="C:\Archivos de programa\Archivos comunes\System\ado\msado15.dll" -->
+Sub Application_OnStart
+ Application("Logueados") = 0
+End Sub
+
+Sub Session_OnStart
+ Session.Timeout = 20
+ Session("Start") = Now
+ Application.Lock
+ Application("Logueados") = Application("Logueados") + 1
+ Application.UnLock
+End Sub
+
+Sub Session_OnEnd
+ Application.Lock
+ Application("Logueados") = Application("Logueados") - 1
+ Application.UnLock
+End Sub	
+ 
+ </SCRIPT>
